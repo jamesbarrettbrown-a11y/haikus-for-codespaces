@@ -1,0 +1,2486 @@
+{
+  "id": "xV7jPDX8lVzQ56DL",
+  "name": "Phase 2 - Doctor Enrichment - 3 Lane Firecrawl V1.0",
+  "active": true,
+  "isArchived": false,
+  "versionId": "02ae74e4-b4bb-4d84-8ef4-a7c1c7c585ce",
+  "triggerCount": 1,
+  "createdAt": "2026-03-25T19:13:31.620Z",
+  "updatedAt": "2026-04-01T19:37:39.851Z",
+  "settings": {
+    "executionOrder": "v1",
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": true
+  },
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        []
+      ]
+    },
+    "Normalize Input + Build Schema": {
+      "main": [
+        [
+          {
+            "node": "Build Ranked Doctor URLs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 1 Start Batch Scrape": {
+      "main": [
+        [
+          {
+            "node": "Lane 1 Store Job",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 1 Store Job": {
+      "main": [
+        [
+          {
+            "node": "Lane 1 Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 1 Wait": {
+      "main": [
+        [
+          {
+            "node": "Lane 1 Increment Poll Count",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 1 Get Batch Status": {
+      "main": [
+        [
+          {
+            "node": "Lane 1 Done?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 1 Done?": {
+      "main": [
+        [
+          {
+            "node": "Lane 1 Batch Failed?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Lane 1 Poll Limit Reached?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 1 Parse Doctors": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 2 Build Candidate URLs": {
+      "main": [
+        [
+          {
+            "node": "Lane 2 Start Batch Scrape",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 2 Start Batch Scrape": {
+      "main": [
+        [
+          {
+            "node": "Lane 2 Store Job",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 2 Store Job": {
+      "main": [
+        [
+          {
+            "node": "Lane 2 Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 2 Wait": {
+      "main": [
+        [
+          {
+            "node": "Lane 2 Increment Poll Count",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 2 Get Batch Status": {
+      "main": [
+        [
+          {
+            "node": "Lane 2 Done?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 2 Done?": {
+      "main": [
+        [
+          {
+            "node": "If Lane 2 Batch Failed?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Lane 2 Poll Limit Reached?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 2 Parse Doctors": {
+      "main": [
+        [
+          {
+            "node": "Lane 2 Has Doctors?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 2 Has Doctors?": {
+      "main": [
+        [
+          {
+            "node": "Merge Terminal Results",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        [
+          {
+            "node": "Lane 3 Map Domain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 3 Map Domain": {
+      "main": [
+        [
+          {
+            "node": "Lane 3 Score URLs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 3 Score URLs": {
+      "main": [
+        [
+          {
+            "node": "Lane 3 Has Candidate URLs?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 3 Start Batch Scrape": {
+      "main": [
+        [
+          {
+            "node": "Lane 3 Store Job",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 3 Store Job": {
+      "main": [
+        [
+          {
+            "node": "Lane 3 Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 3 Wait": {
+      "main": [
+        [
+          {
+            "node": "Lane 3 Increment Poll Count",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 3 Get Batch Status": {
+      "main": [
+        [
+          {
+            "node": "Lane 3 Done?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 3 Done?": {
+      "main": [
+        [
+          {
+            "node": "Lane 3 Batch Failed?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Lane 3 Poll Limit Reached?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 3 Parse Doctors": {
+      "main": [
+        [
+          {
+            "node": "Merge Terminal Results",
+            "type": "main",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Normalize Input + Build Schema",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 1 Failed": {
+      "main": [
+        [
+          {
+            "node": "Lane 2 Build Candidate URLs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 2 Failed": {
+      "main": [
+        [
+          {
+            "node": "Lane 3 Map Domain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 3 Has Candidate URLs?": {
+      "main": [
+        [
+          {
+            "node": "Lane 3 Start Batch Scrape",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Lane 3 No Candidate URLs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 3 No Candidate URLs": {
+      "main": [
+        [
+          {
+            "node": "Merge Terminal Results",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Lane 1 Increment Poll Count": {
+      "main": [
+        [
+          {
+            "node": "Lane 1 Get Batch Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 1 Poll Limit Reached?": {
+      "main": [
+        [
+          {
+            "node": "Lane 1 Poll Timeout",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Lane 1 Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 1 Poll Timeout": {
+      "main": [
+        [
+          {
+            "node": "Lane 2 Build Candidate URLs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 2 Increment Poll Count": {
+      "main": [
+        [
+          {
+            "node": "Lane 2 Get Batch Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 2 Poll Limit Reached?": {
+      "main": [
+        [
+          {
+            "node": "Lane 2 Poll Timeout",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Lane 2 Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 2 Poll Timeout": {
+      "main": [
+        [
+          {
+            "node": "Lane 3 Map Domain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 3 Poll Limit Reached?": {
+      "main": [
+        [
+          {
+            "node": "Lane 3 Poll Timeout",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Lane 3 Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 3 Poll Timeout": {
+      "main": [
+        [
+          {
+            "node": "Merge Terminal Results",
+            "type": "main",
+            "index": 5
+          }
+        ]
+      ]
+    },
+    "Lane 3 Batch Failed?": {
+      "main": [
+        [
+          {
+            "node": "Lane 3 Failed",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Lane 3 Parse Doctors",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 3 Failed": {
+      "main": [
+        [
+          {
+            "node": "Merge Terminal Results",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "Lane 3 Increment Poll Count": {
+      "main": [
+        [
+          {
+            "node": "Lane 3 Get Batch Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Lane 2 Batch Failed?": {
+      "main": [
+        [
+          {
+            "node": "Lane 2 Failed",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Lane 2 Parse Doctors",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane 1 Batch Failed?": {
+      "main": [
+        [
+          {
+            "node": "Lane 1 Failed",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Lane 1 Parse Doctors",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge Terminal Results": {
+      "main": [
+        [
+          {
+            "node": "Prepare Sheet Rown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Sheet Rown": {
+      "main": [
+        [
+          {
+            "node": "Upsert Doctor Enrichment Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Merge Terminal Results",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Lane 2 Build Candidate URLs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Ranked Doctor URLs": {
+      "main": [
+        [
+          {
+            "node": "Keep Top Candidate URLs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Keep Top Candidate URLs": {
+      "main": [
+        [
+          {
+            "node": "Lane 1 Start Batch Scrape",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "ea3cf72a-aa57-4628-a0db-8ff879413e05",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -3536,
+        -128
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const raw =\n  $json.website ||\n  $json.Website ||\n  $json['Website '] ||\n  $json['Website Normalized'] ||\n  $json.finalrequesturl ||\n  $json.finalRequestUrl ||\n  '';\n\nif (!raw) {\n  throw new Error('No website field found. Expected website, Website, Website , Website Normalized, finalrequesturl, or finalRequestUrl.');\n}\n\nlet website = String(raw).trim();\n\nif (!/^https?:\\/\\//i.test(website)) {\n  website = `https://${website}`;\n}\n\nwebsite = website.replace(/\\s+/g, '');\n\nconst match = website.match(/^(https?:\\/\\/)([^\\/?#]+)(\\/[^?#]*)?/i);\n\nif (!match) {\n  throw new Error(`Could not parse website URL: ${website}`);\n}\n\nconst protocol = match[1].toLowerCase();\nconst hostname = match[2].toLowerCase().replace(/^www\\./, '');\nconst pathname = (match[3] || '').replace(/\\/+$/, '');\nconst normalizedPath = pathname || '';\nconst normalizedWebsite = `${protocol}//${hostname}${normalizedPath}`;\nconst baseWebsite = `${protocol}//${hostname}`;\nconst normDomain = hostname;\n\nconst extractionPrompt = `You are extracting doctor-level dental providers from a dental practice page.\n\nReturn only real doctors who are presented by the practice as providers on the page.\n\nStrict rules:\n- Prefer names that appear in the page's doctor roster or \"Meet Our Doctors\" section.\n- Ignore names that appear only inside reviews, testimonials, patient quotes, blog text, navigation, footer text, or marketing copy.\n- Ignore names mentioned only in sentences like \"I love Dr. X\" or \"Amazing experience with Dr. X\" unless that same person also appears as a doctor heading/profile on the page.\n- Do not invent or infer doctors from reviews.\n- If a name appears as a heading with credentials like DDS, DMD, MSD, or MD in the doctor section, count it as a doctor.\n- Return all real doctors in the doctor section, not just the first one.\n\nInclude:\n- dentists\n- orthodontists\n- oral surgeons\n- pediatric dentists\n- endodontists\n- periodontists\n- prosthodontists\n- practicing owners\n\nExclude:\n- hygienists\n- assistants\n- office managers\n- front desk staff\n- coordinators\n- names that appear only in testimonials or reviews\n\nReturn a JSON array called \"doctors\".\n\nFor each doctor include:\nfull_name\nfirst_name\nlast_name\nrole_title\nspecialty\nbio_page_url\nsource_page_url\nconfidence`;\n\nconst extractionSchema = {\n  type: 'object',\n  properties: {\n    practice_name: { type: ['string', 'null'] },\n    doctors: {\n      type: 'array',\n      items: {\n        type: 'object',\n        properties: {\n          full_name: { type: ['string', 'null'] },\n          first_name: { type: ['string', 'null'] },\n          last_name: { type: ['string', 'null'] },\n          role_title: { type: ['string', 'null'] },\n          specialty: { type: ['string', 'null'] },\n          bio_page_url: { type: ['string', 'null'] },\n          source_page_url: { type: ['string', 'null'] },\n          confidence: { type: ['number', 'null'] }\n        },\n        required: [\n          'full_name',\n          'first_name',\n          'last_name',\n          'role_title',\n          'specialty',\n          'bio_page_url',\n          'source_page_url',\n          'confidence'\n        ]\n      }\n    }\n  },\n  required: ['practice_name', 'doctors']\n};\n\nreturn {\n  json: {\n    ...$json,\n    website: normalizedWebsite,\n    base_website: baseWebsite,\n    norm_domain: normDomain,\n    extraction_prompt: extractionPrompt,\n    extraction_schema: extractionSchema,\n    lane_used: null,\n    extraction_status: 'started'\n  }\n};"
+      },
+      "id": "8e7393b9-94b7-4597-8c91-eb5e2eb2372c",
+      "name": "Normalize Input + Build Schema",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2928,
+        -128
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.firecrawl.dev/v2/batch/scrape",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer fc-a00084f69e8345ea83a552a8c9d2265c"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{\n{\n  urls: $json.lane1_candidate_urls,\n  ignoreInvalidURLs: true,\n  maxConcurrency: 3,\n  onlyMainContent: true,\n  formats: [\n    {\n      type: 'json',\n      prompt: $json.extraction_prompt,\n      schema: $json.extraction_schema\n    },\n    \"markdown\"\n  ]\n}\n}}",
+        "options": {}
+      },
+      "id": "dbd345fa-d5d6-4eb3-951f-50c96ede8d96",
+      "name": "Lane 1 Start Batch Scrape",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -2320,
+        -128
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "074316e5-996f-463a-b1c7-afd038d8c2c9",
+              "name": "batch_job_id",
+              "value": "={{ $json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "a7f66680-0c28-49a1-b05e-4ae3c1e2eab3",
+              "name": "lane_label",
+              "value": "lane_1_root",
+              "type": "string"
+            },
+            {
+              "id": "7b9f8232-1a15-4969-9ab9-894cac6049bb",
+              "name": "poll_attempts",
+              "value": 0,
+              "type": "number"
+            },
+            {
+              "id": "e38429ce-f68f-4925-b93e-250d7a5d7ba1",
+              "name": "practice_unique_key",
+              "value": "={{ $('Normalize Input + Build Schema').item.json.practice_unique_key || $('Normalize Input + Build Schema').item.json['Practice Unique Key'] || null }}",
+              "type": "string"
+            },
+            {
+              "id": "08a8b2ba-5d54-4916-8b41-3c99c3c4b4a2",
+              "name": "website",
+              "value": "={{ $('Normalize Input + Build Schema').item.json.website || null }}",
+              "type": "string"
+            },
+            {
+              "id": "9661468b-ad27-4eac-affc-be49025f4a25",
+              "name": "base_website",
+              "value": "={{ $('Normalize Input + Build Schema').item.json.base_website || null }}",
+              "type": "string"
+            },
+            {
+              "id": "38dabc68-ae97-44c0-af6c-693d3b43620f",
+              "name": "norm_domain",
+              "value": "={{ $('Normalize Input + Build Schema').item.json.norm_domain || null }}",
+              "type": "string"
+            },
+            {
+              "id": "a9253f75-778d-479c-99ad-508b3797ae81",
+              "name": "phone",
+              "value": "={{ $('Normalize Input + Build Schema').item.json.phone || $('Normalize Input + Build Schema').item.json.Phone || null }}",
+              "type": "string"
+            },
+            {
+              "id": "75ac8700-b049-4bfd-9b92-a481f46d19fb",
+              "name": "address",
+              "value": "={{ $('Normalize Input + Build Schema').item.json.address || $('Normalize Input + Build Schema').item.json.Address || null }}",
+              "type": "string"
+            },
+            {
+              "id": "f66a91b1-d34d-4612-ae54-f1ee4902c730",
+              "name": "practice_name",
+              "value": "={{ $('Normalize Input + Build Schema').item.json.practice_name || $('Normalize Input + Build Schema').item.json['Practice Name'] || null }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "f037d10e-9a82-4824-8213-33c0070329f6",
+      "name": "Lane 1 Store Job",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -2112,
+        -128
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 6
+      },
+      "id": "f8555edc-482c-43c2-a2fc-9c6c7e7a7db0",
+      "name": "Lane 1 Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -1920,
+        -128
+      ],
+      "webhookId": "f2e51788-631b-4304-9b21-79af6308843a"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.firecrawl.dev/v2/batch/scrape/{{$json.batch_job_id}}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer fc-a00084f69e8345ea83a552a8c9d2265c"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ab37d276-3b54-46bc-abf5-7fa734d26ae9",
+      "name": "Lane 1 Get Batch Status",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1488,
+        -128
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "leftValue": "={{$json.status}}",
+              "rightValue": "completed",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              },
+              "id": "14e38bc0-d576-4502-aa79-c76f8a6cefa4"
+            },
+            {
+              "id": "737e8a16-a4cb-43c5-9bb9-be59e53438f0",
+              "leftValue": "={{$json.status}}",
+              "rightValue": "failed",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "id": "86cca1b4-69f1-487b-9797-88ba7a32b357",
+      "name": "Lane 1 Done?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1264,
+        -128
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const laneInfo = $json;\nconst pages = Array.isArray($json.data) ? $json.data : [];\n\nconst providerMap = new Map();\n\nconst banWords = [\n  \"hygienist\",\n  \"assistant\",\n  \"front desk\",\n  \"coordinator\",\n  \"office manager\",\n  \"treatment coordinator\",\n  \"insurance coordinator\",\n  \"business assistant\"\n];\n\nfunction normalizeName(name = \"\") {\n  return String(name)\n    .replace(/\\bdr\\.?\\s*/ig, \"\")\n    .replace(/,\\s*(dds|dmd|msd|md)/ig, \"\")\n    .replace(/\\s+/g, \" \")\n    .trim()\n    .toLowerCase();\n}\n\nfunction stripCredentials(name = \"\") {\n  return String(name)\n    .replace(/,\\s*(dds|dmd|msd|md)/ig, \"\")\n    .trim();\n}\n\nfunction parseNameParts(fullName = \"\") {\n  const cleaned = stripCredentials(\n    String(fullName).replace(/\\bdr\\.?\\s*/ig, \"\").trim()\n  );\n\n  const parts = cleaned.split(/\\s+/).filter(Boolean);\n\n  return {\n    first_name: parts[0] || null,\n    last_name: parts.length > 1 ? parts.slice(1).join(\" \") : null\n  };\n}\n\nfunction scoreCandidate(candidate) {\n  let score = 0;\n\n  const fullName = String(candidate?.full_name || \"\").trim();\n  const firstName = String(candidate?.first_name || \"\").trim();\n  const lastName = String(candidate?.last_name || \"\").trim();\n  const roleTitle = String(candidate?.role_title || \"\").toLowerCase();\n  const specialty = String(candidate?.specialty || \"\").trim();\n  const bioPageUrl = String(candidate?.bio_page_url || \"\").trim();\n  const sourcePageUrl = String(candidate?.source_page_url || \"\").trim();\n  const confidence = typeof candidate?.confidence === \"number\" ? candidate.confidence : 0;\n\n  const hasCredentials = /\\b(DDS|DMD|MSD|MD)\\b/i.test(fullName);\n  const isGenericDrLast = /^Dr\\.?\\s+[A-Z][a-z'.-]+$/i.test(fullName);\n  const hasFullFirstLast = !!(firstName && lastName);\n\n  if (hasCredentials) score += 5;\n  if (hasFullFirstLast) score += 4;\n  if (bioPageUrl) score += 3;\n  if (sourcePageUrl) score += 2;\n  if (specialty) score += 1;\n  if (roleTitle.includes(\"dentist\")) score += 1;\n\n  score += confidence;\n\n  if (isGenericDrLast) score -= 4;\n\n  return score;\n}\n\nfunction upsertDoctor(candidate) {\n  const name = String(candidate?.full_name || \"\").trim();\n  if (!name) return;\n\n  const role = String(candidate?.role_title || \"\").toLowerCase();\n  if (banWords.some(w => role.includes(w))) return;\n\n  const key = normalizeName(name);\n  if (!key) return;\n\n  const existing = providerMap.get(key);\n\n  if (!existing) {\n    providerMap.set(key, candidate);\n    return;\n  }\n\n  if (scoreCandidate(candidate) > scoreCandidate(existing)) {\n    providerMap.set(key, { ...existing, ...candidate });\n  }\n}\n\nfor (const page of pages) {\n\n  const extracted =\n    page?.json ||\n    page?.data?.json ||\n    page?.metadata?.json ||\n    {};\n\n  const practiceName = extracted.practice_name || null;\n\n  const extractedDoctors = Array.isArray(extracted.doctors)\n    ? extracted.doctors\n    : [];\n\n  for (const d of extractedDoctors) {\n\n    const name = String(d?.full_name || \"\").trim();\n    if (!name) continue;\n\n    upsertDoctor({\n      full_name: d.full_name || null,\n      first_name: d.first_name || null,\n      last_name: d.last_name || null,\n      role_title: d.role_title || \"Dentist\",\n      specialty: d.specialty || null,\n      bio_page_url: d.bio_page_url || null,\n      source_page_url:\n        d.source_page_url ||\n        page?.metadata?.url ||\n        null,\n      confidence: typeof d.confidence === \"number\" ? d.confidence : 0.9,\n      source_lane: laneInfo.lane_label,\n      practice_name_extracted: practiceName\n    });\n  }\n\n  const markdown =\n    page?.markdown ||\n    page?.data?.markdown ||\n    page?.content?.markdown ||\n    \"\";\n\n  if (!markdown) continue;\n\n  const text = String(markdown);\n\n  const credentialMatches = [\n    ...text.matchAll(/\\b([A-Z][A-Za-z.'-]+\\s+[A-Z][A-Za-z.'-]+,\\s*(DDS|DMD|MD))\\b/gm),\n    ...text.matchAll(/\\b(Dr\\.?\\s+[A-Z][A-Za-z.'-]+\\s+[A-Z][A-Za-z.'-]+,\\s*(DDS|DMD|MD))\\b/gm)\n  ];\n\n  for (const match of credentialMatches) {\n\n    const fullName = String(match[1] || \"\").trim();\n    if (!fullName) continue;\n\n    const parts = parseNameParts(fullName);\n\n    upsertDoctor({\n      full_name: fullName,\n      first_name: parts.first_name,\n      last_name: parts.last_name,\n      role_title: \"Dentist\",\n      specialty: null,\n      bio_page_url: page?.metadata?.url || null,\n      source_page_url: page?.metadata?.url || null,\n      confidence: 0.92,\n      source_lane: laneInfo.lane_label,\n      practice_name_extracted: practiceName\n    });\n\n  }\n\n  const genericMatches = [\n    ...text.matchAll(/\\b(Dr\\.?\\s+[A-Z][a-z]+)\\b/gm)\n  ];\n\n  for (const match of genericMatches) {\n\n    const fullName = String(match[1] || \"\").trim();\n    if (!fullName) continue;\n\n    const parts = parseNameParts(fullName);\n\n    upsertDoctor({\n      full_name: fullName,\n      first_name: parts.first_name,\n      last_name: parts.last_name,\n      role_title: \"Dentist\",\n      specialty: null,\n      bio_page_url: page?.metadata?.url || null,\n      source_page_url: page?.metadata?.url || null,\n      confidence: 0.5,\n      source_lane: laneInfo.lane_label,\n      practice_name_extracted: practiceName\n    });\n\n  }\n}\n\nconst rawDoctors = [...providerMap.values()];\n\nfor (const d of rawDoctors) {\n\n  const genericMatch = String(d.full_name || \"\").match(/^Dr\\.?\\s+([A-Z][a-z]+)$/i);\n  if (!genericMatch) continue;\n\n  const genericLast = genericMatch[1].toLowerCase();\n\n  const fuller = rawDoctors.find(x => {\n\n    const full = String(x.full_name || \"\");\n    const hasCreds = /\\b(DDS|DMD|MD)\\b/i.test(full);\n    const last = String(x.last_name || \"\").toLowerCase();\n\n    return hasCreds && last === genericLast;\n\n  });\n\n  if (fuller) {\n\n    d.full_name = fuller.full_name;\n    d.first_name = fuller.first_name;\n    d.last_name = fuller.last_name;\n    d.bio_page_url = fuller.bio_page_url || d.bio_page_url;\n    d.source_page_url = fuller.source_page_url || d.source_page_url;\n    d.confidence = Math.max(d.confidence || 0, fuller.confidence || 0);\n\n  }\n}\n\nconst bestByNormalized = new Map();\n\nfor (const d of rawDoctors) {\n\n  const key = normalizeName(d.full_name || \"\");\n  if (!key) continue;\n\n  const existing = bestByNormalized.get(key);\n\n  if (!existing || scoreCandidate(d) > scoreCandidate(existing)) {\n    bestByNormalized.set(key, d);\n  }\n\n}\n\nconst byLastName = new Map();\n\nfor (const d of bestByNormalized.values()) {\n\n  const last = String(d.last_name || \"\").toLowerCase();\n  const bucket = last || normalizeName(d.full_name);\n\n  if (!byLastName.has(bucket)) byLastName.set(bucket, []);\n  byLastName.get(bucket).push(d);\n\n}\n\nconst finalDoctors = [];\n\nfor (const candidates of byLastName.values()) {\n\n  candidates.sort((a, b) => scoreCandidate(b) - scoreCandidate(a));\n  finalDoctors.push(candidates[0]);\n\n}\n\nfinalDoctors.sort((a, b) => scoreCandidate(b) - scoreCandidate(a));\n\nreturn {\n  json: {\n    ...laneInfo,\n    lane_used: laneInfo.lane_label,\n    extraction_status: finalDoctors.length ? \"success\" : \"fallback_required\",\n    doctor_count: finalDoctors.length,\n    doctors: finalDoctors\n  }\n};"
+      },
+      "id": "3c946d0e-8f46-4bc0-9d3a-ff12c2459005",
+      "name": "Lane 1 Parse Doctors",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -896,
+        -112
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const base = $json.base_website;\nconst candidates = [\n  `${base}/team`,\n  `${base}/our-team`,\n  `${base}/meet-the-team`,\n  `${base}/meet-our-team`,\n  `${base}/doctors`,\n  `${base}/our-doctors`,\n  `${base}/meet-the-doctors`,\n  `${base}/providers`,\n  `${base}/our-providers`,\n  `${base}/staff`,\n  `${base}/about`,\n  `${base}/about-us`\n];\nconst unique = [...new Set(candidates.map(x => x.replace(/([^:]\\/)\\/+/, '$1')))];\nreturn {\n  json: {\n    ...$json,\n    candidate_urls_lane2: unique,\n    lane_label: 'lane_2_targeted_urls'\n  }\n};"
+      },
+      "id": "92c2c338-c6a8-4615-9cfa-c9e07a844ce7",
+      "name": "Lane 2 Build Candidate URLs",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        16,
+        176
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.firecrawl.dev/v2/batch/scrape",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer fc-a00084f69e8345ea83a552a8c9d2265c"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{\n{\n  urls: $json.candidate_urls_lane2,\n  ignoreInvalidURLs: true,\n  maxConcurrency: 4,\n  onlyMainContent: true,\n  formats: [\n    {\n      type: 'json',\n      prompt: $json.extraction_prompt,\n      schema: $json.extraction_schema\n    },\n    'markdown'\n  ]\n}\n}}",
+        "options": {}
+      },
+      "id": "c5508af0-2341-48c2-90c7-86341ed20c32",
+      "name": "Lane 2 Start Batch Scrape",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        240,
+        176
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "name": "batch_job_id",
+              "value": "={{$json.id}}",
+              "type": "string",
+              "id": "196ba874-9c92-4e7a-9311-12109a79c178"
+            },
+            {
+              "name": "lane_label",
+              "value": "lane_2_targeted_urls",
+              "type": "string",
+              "id": "0e926985-0aff-4872-bc0c-0d04d7774ce6"
+            },
+            {
+              "id": "cd03f973-1d29-4c65-aa79-62c364e3d44d",
+              "name": "poll_attempts",
+              "value": 0,
+              "type": "number"
+            },
+            {
+              "id": "dfb9c547-bd04-4a30-852b-a14d9cc72592",
+              "name": "website",
+              "value": "={{ $('Lane 2 Build Candidate URLs').item.json.website || null }}",
+              "type": "string"
+            },
+            {
+              "id": "c09f54b3-1698-4d3d-81aa-272e9b5d9621",
+              "name": "base_website",
+              "value": "={{ $('Lane 2 Build Candidate URLs').item.json.base_website || null }}",
+              "type": "string"
+            },
+            {
+              "id": "bd835eba-f32e-4dfc-92e3-030444449b61",
+              "name": "norm_domain",
+              "value": "={{ $('Lane 2 Build Candidate URLs').item.json.norm_domain || null }}",
+              "type": "string"
+            },
+            {
+              "id": "6bf39d42-e070-4c3d-a962-b38700e73fd7",
+              "name": "practice_unique_key",
+              "value": "={{ $('Lane 2 Build Candidate URLs').item.json.practice_unique_key || $('Lane 2 Build Candidate URLs').item.json['Practice Unique Key'] || null }}",
+              "type": "string"
+            },
+            {
+              "id": "5383271c-be25-415e-9d9c-992bd2ab5525",
+              "name": "practice_name",
+              "value": "={{ $('Lane 2 Build Candidate URLs').item.json.practice_name || $('Lane 2 Build Candidate URLs').item.json['Practice Name'] || null }}",
+              "type": "string"
+            },
+            {
+              "id": "8d8007ed-581e-4332-a20e-ac8b05893ea5",
+              "name": "phone",
+              "value": "={{ $('Lane 2 Build Candidate URLs').item.json.phone || $('Lane 2 Build Candidate URLs').item.json.Phone || null }}",
+              "type": "string"
+            },
+            {
+              "id": "66d2a1b3-ea82-4c27-be1b-95b9213a66e2",
+              "name": "address",
+              "value": "={{ $('Lane 2 Build Candidate URLs').item.json.address || $('Lane 2 Build Candidate URLs').item.json.Address || null }}",
+              "type": "string"
+            },
+            {
+              "id": "16c988bb-ee07-4293-8287-7ef08ffd25fd",
+              "name": "extraction_prompt",
+              "value": "={{ $('Lane 2 Build Candidate URLs').item.json.extraction_prompt || null }}",
+              "type": "string"
+            },
+            {
+              "id": "1651f319-7e2e-49c8-a043-90d0dab85fc9",
+              "name": "extraction_schema",
+              "value": "={{ $('Lane 2 Build Candidate URLs').item.json.extraction_schema || null }}",
+              "type": "object"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "5f377fcd-d8bc-423f-b32e-47394af9ec4f",
+      "name": "Lane 2 Store Job",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        448,
+        176
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 6
+      },
+      "id": "0dc08eed-d060-4396-b906-8fc2a5c19514",
+      "name": "Lane 2 Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        720,
+        176
+      ],
+      "webhookId": "395aa811-eae6-4e69-85b7-1df434a544f2"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.firecrawl.dev/v2/batch/scrape/{{$json.batch_job_id}}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer fc-a00084f69e8345ea83a552a8c9d2265c"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "adbfb14d-79b6-4f1e-941b-61f80b0c508e",
+      "name": "Lane 2 Get Batch Status",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1120,
+        176
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "leftValue": "={{$json.status}}",
+              "rightValue": "completed",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              },
+              "id": "aad863c0-2f2a-4de7-a78b-7c6ce6e68bed"
+            },
+            {
+              "leftValue": "={{$json.status}}",
+              "rightValue": "failed",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              },
+              "id": "062d10b6-3e3c-4a20-871d-50320aa99198"
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "id": "80a841bd-29b6-4801-80c5-696f8782305d",
+      "name": "Lane 2 Done?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1360,
+        176
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const laneInfo = $json;\nconst pages = Array.isArray($json.data) ? $json.data : [];\nconst providerMap = new Map();\nconst banWords = ['hygienist','assistant','front desk','office manager','treatment coordinator','patient coordinator','insurance coordinator','business assistant'];\n\nfor (const page of pages) {\n  const extracted = page?.json || page?.data?.json || page?.metadata?.json || {};\n  const practiceName = extracted.practice_name || null;\n  const doctors = Array.isArray(extracted.doctors) ? extracted.doctors : [];\n  for (const d of doctors) {\n    const name = (d?.full_name || '').trim();\n    if (!name) continue;\n    const role = String(d?.role_title || '').toLowerCase();\n    if (banWords.some(w => role.includes(w))) continue;\n    const key = name.toLowerCase();\n    const current = providerMap.get(key);\n    const candidate = {\n      full_name: d.full_name || null,\n      first_name: d.first_name || null,\n      last_name: d.last_name || null,\n      role_title: d.role_title || null,\n      specialty: d.specialty || null,\n      bio_page_url: d.bio_page_url || null,\n      source_page_url: d.source_page_url || page?.metadata?.url || page?.metadata?.sourceURL || null,\n      confidence: typeof d.confidence === 'number' ? d.confidence : null,\n      source_lane: laneInfo.lane_label,\n      practice_name_extracted: practiceName\n    };\n    if (!current || (candidate.confidence ?? 0) > (current.confidence ?? 0)) {\n      providerMap.set(key, candidate);\n    }\n  }\n}\n\nconst doctors = [...providerMap.values()];\nreturn {\n  json: {\n    ...laneInfo,\n    lane_used: laneInfo.lane_label,\n    extraction_status: doctors.length ? 'success' : 'fallback_required',\n    doctor_count: doctors.length,\n    doctors\n  }\n};"
+      },
+      "id": "90f68466-8d99-4962-9597-59e813a6c396",
+      "name": "Lane 2 Parse Doctors",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1744,
+        -32
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "leftValue": "={{$json.doctor_count}}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "larger"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "99227930-0ab0-48fb-8bf8-3445ea9b7ecc",
+      "name": "Lane 2 Has Doctors?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2432,
+        -32
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.firecrawl.dev/v2/map",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer fc-a00084f69e8345ea83a552a8c9d2265c"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"url\": $json.base_website,\n  \"search\": \"team doctors dentist provider meet about staff orthodontist oral surgeon pediatric dentist endodontist periodontist prosthodontist\",\n  \"sitemap\": \"include\",\n  \"includeSubdomains\": false,\n  \"ignoreQueryParameters\": true,\n  \"limit\": 40,\n  \"timeout\": 60000\n}",
+        "options": {}
+      },
+      "id": "7d68a7a8-62a4-4479-91bd-db747a288bb1",
+      "name": "Lane 3 Map Domain",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1632,
+        -336
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const upstream = $json;\nconst links = Array.isArray($json.links) ? $json.links : [];\n\nfunction scoreUrl(u = '') {\n  const x = String(u).toLowerCase();\n  let s = 0;\n\n  if (x.includes('team')) s += 5;\n  if (x.includes('doctor')) s += 5;\n  if (x.includes('dentist')) s += 5;\n  if (x.includes('provider')) s += 4;\n  if (x.includes('meet')) s += 3;\n  if (x.includes('about')) s += 2;\n  if (x.includes('staff')) s += 2;\n  if (x.includes('orthodont')) s += 4;\n  if (x.includes('oral-surgeon') || x.includes('oral_surgeon')) s += 4;\n  if (x.includes('pediatric')) s += 4;\n  if (x.includes('endodont')) s += 4;\n  if (x.includes('periodont')) s += 4;\n  if (x.includes('prosthodont')) s += 4;\n\n  if (x.includes('blog')) s -= 6;\n  if (x.includes('privacy')) s -= 10;\n  if (x.includes('career')) s -= 7;\n  if (x.includes('forms')) s -= 6;\n  if (x.includes('financing')) s -= 4;\n  if (x.includes('insurance')) s -= 3;\n\n  return s;\n}\n\nconst filtered = links\n  .map(l => typeof l === 'string' ? { url: l } : l)\n  .filter(l => l && l.url)\n  .map(l => ({ ...l, score: scoreUrl(l.url) }))\n  .filter(l => l.score > 0)\n  .sort((a, b) => b.score - a.score)\n  .slice(0, 8)\n  .map(l => l.url);\n\nreturn {\n  json: {\n    ...upstream,\n    candidate_urls_lane3: filtered,\n    lane_label: 'lane_3_map_rescue'\n  }\n};"
+      },
+      "id": "818e727c-decc-416c-b621-a2875d7f058d",
+      "name": "Lane 3 Score URLs",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1888,
+        -336
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.firecrawl.dev/v2/batch/scrape",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer fc-a00084f69e8345ea83a552a8c9d2265c"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{\n{\n  urls: $json.candidate_urls_lane3,\n  ignoreInvalidURLs: true,\n  maxConcurrency: 4,\n  onlyMainContent: true,\n  formats: [\n    {\n      type: 'json',\n      prompt: $json.extraction_prompt,\n      schema: $json.extraction_schema\n    },\n    'markdown'\n  ]\n}\n}}",
+        "options": {}
+      },
+      "id": "05a1e5da-1a26-41bf-9617-934c4ca48c10",
+      "name": "Lane 3 Start Batch Scrape",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4144,
+        -352
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "name": "batch_job_id",
+              "value": "={{$json.id}}",
+              "type": "string",
+              "id": "930dc441-30ec-45ea-8a1a-3631a0ac1486"
+            },
+            {
+              "name": "lane_label",
+              "value": "lane_3_map_rescue",
+              "type": "string",
+              "id": "18f2ce61-f1ac-4c6f-8ecc-031d32512a5e"
+            },
+            {
+              "id": "846adb4e-89c5-498f-b4d2-d36be897ae4e",
+              "name": "poll_attempts",
+              "value": 0,
+              "type": "number"
+            },
+            {
+              "id": "61c725fb-8ed0-4e07-9fc8-ddc353736eb7",
+              "name": "website",
+              "value": "={{ $('Lane 2 Build Candidate URLs').item.json.website || null }}",
+              "type": "string"
+            },
+            {
+              "id": "400b1e12-c830-48eb-83ac-4438fa02d198",
+              "name": "base_website",
+              "value": "={{ $('Lane 2 Build Candidate URLs').item.json.base_website || null }}",
+              "type": "string"
+            },
+            {
+              "id": "bb1bbd66-92d3-433e-9e02-c69231a56e13",
+              "name": "norm_domain",
+              "value": "={{ $('Lane 2 Build Candidate URLs').item.json.norm_domain || null }}",
+              "type": "string"
+            },
+            {
+              "id": "effd5ab3-38b3-458d-838b-d62323ac19ff",
+              "name": "practice_unique_key",
+              "value": "={{ $('Lane 2 Build Candidate URLs').item.json.practice_unique_key || $('Lane 2 Build Candidate URLs').item.json['Practice Unique Key'] || null }}",
+              "type": "string"
+            },
+            {
+              "id": "464f3725-f1b8-4e5e-ad3d-af455bc2e983",
+              "name": "practice_name",
+              "value": "={{ $('Lane 2 Build Candidate URLs').item.json.practice_name || $('Lane 2 Build Candidate URLs').item.json['Practice Name'] || null }}",
+              "type": "string"
+            },
+            {
+              "id": "474c750a-e964-4f0b-a513-3ed6dbf222b7",
+              "name": "phone",
+              "value": "={{ $('Lane 2 Build Candidate URLs').item.json.phone || $('Lane 2 Build Candidate URLs').item.json.Phone || null }}",
+              "type": "string"
+            },
+            {
+              "id": "7707123f-10ae-4cb6-beee-15d852cedd30",
+              "name": "address",
+              "value": "={{ $('Lane 2 Build Candidate URLs').item.json.address || $('Lane 2 Build Candidate URLs').item.json.Address || null }}",
+              "type": "string"
+            },
+            {
+              "id": "920e882e-f877-4bf0-b535-0dd203d2c6dd",
+              "name": "extraction_prompt",
+              "value": "={{ $('Lane 2 Build Candidate URLs').item.json.extraction_prompt || null }}",
+              "type": "string"
+            },
+            {
+              "id": "4b497583-d1c1-4316-afcd-4f5c60620235",
+              "name": "extraction_schema",
+              "value": "={{ $('Lane 2 Build Candidate URLs').item.json.extraction_schema || null }}",
+              "type": "object"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "e9bc5102-c916-4d93-94b6-a36d8048872f",
+      "name": "Lane 3 Store Job",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        4384,
+        -352
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 6
+      },
+      "id": "395a1238-7e51-4c00-9d40-20fe47622c2b",
+      "name": "Lane 3 Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        4592,
+        -352
+      ],
+      "webhookId": "07f6bf00-1ee1-4aa7-a999-099e92393288"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.firecrawl.dev/v2/batch/scrape/{{$json.batch_job_id}}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer fc-a00084f69e8345ea83a552a8c9d2265c"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5bc584ac-45a0-429c-ab47-83648d9525e1",
+      "name": "Lane 3 Get Batch Status",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4960,
+        -352
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "leftValue": "={{$json.status}}",
+              "rightValue": "completed",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              },
+              "id": "30e30e9f-f817-4142-ba7d-903e752c65a4"
+            },
+            {
+              "leftValue": "={{$json.status}}",
+              "rightValue": "failed",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              },
+              "id": "bf2fa58f-3f4b-464b-98e3-6304bb4f051e"
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "id": "971cffeb-c84a-48cd-9166-60ab37f12634",
+      "name": "Lane 3 Done?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        5136,
+        -352
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const laneInfo = $json;\nconst pages = Array.isArray($json.data) ? $json.data : [];\nconst providerMap = new Map();\nconst banWords = ['hygienist','assistant','front desk','office manager','treatment coordinator','patient coordinator','insurance coordinator','business assistant'];\n\nfor (const page of pages) {\n  const extracted = page?.json || page?.data?.json || page?.metadata?.json || {};\n  const practiceName = extracted.practice_name || null;\n  const doctors = Array.isArray(extracted.doctors) ? extracted.doctors : [];\n  for (const d of doctors) {\n    const name = (d?.full_name || '').trim();\n    if (!name) continue;\n    const role = String(d?.role_title || '').toLowerCase();\n    if (banWords.some(w => role.includes(w))) continue;\n    const key = name.toLowerCase();\n    const current = providerMap.get(key);\n    const candidate = {\n      full_name: d.full_name || null,\n      first_name: d.first_name || null,\n      last_name: d.last_name || null,\n      role_title: d.role_title || null,\n      specialty: d.specialty || null,\n      bio_page_url: d.bio_page_url || null,\n      source_page_url: d.source_page_url || page?.metadata?.url || page?.metadata?.sourceURL || null,\n      confidence: typeof d.confidence === 'number' ? d.confidence : null,\n      source_lane: laneInfo.lane_label,\n      practice_name_extracted: practiceName\n    };\n    if (!current || (candidate.confidence ?? 0) > (current.confidence ?? 0)) {\n      providerMap.set(key, candidate);\n    }\n  }\n}\n\nconst doctors = [...providerMap.values()];\nreturn {\n  json: {\n    ...laneInfo,\n    lane_used: laneInfo.lane_label,\n    extraction_status: doctors.length ? 'success' : 'manual_review_required',\n    doctor_count: doctors.length,\n    doctors,\n    fail_reason: doctors.length ? null : 'no_providers_found_after_all_lanes'\n  }\n};"
+      },
+      "id": "c9312bc4-2ccf-436a-b2a7-a56819fa2dac",
+      "name": "Lane 3 Parse Doctors",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5632,
+        -624
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1bM6b1N1u0-IbAvYGBL66DYNSNli2NA8TtaWY7j2BRV8",
+          "mode": "list",
+          "cachedResultName": "Dental Master - 2.0",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bM6b1N1u0-IbAvYGBL66DYNSNli2NA8TtaWY7j2BRV8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 665312531,
+          "mode": "list",
+          "cachedResultName": "ALL MASTER",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bM6b1N1u0-IbAvYGBL66DYNSNli2NA8TtaWY7j2BRV8/edit#gid=665312531"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -3104,
+        -432
+      ],
+      "id": "6c0d7ee1-3b1c-4ab1-98ba-6d3f8c196aa9",
+      "name": "Get row(s) in sheet"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4438732a-ff4e-49b8-99be-be6cdea4a731",
+              "name": "lane_used",
+              "value": "lane_1_root",
+              "type": "string"
+            },
+            {
+              "id": "de248bac-d260-4c21-8efd-c4d37f7b68a2",
+              "name": "extraction_status",
+              "value": "fallback_required",
+              "type": "string"
+            },
+            {
+              "id": "2ed47250-dcd7-4b8e-9cb5-076f5b6b8396",
+              "name": "doctor_count",
+              "value": 0,
+              "type": "number"
+            },
+            {
+              "id": "28458c57-1526-4ce8-85e2-735dea0f4d88",
+              "name": "doctors",
+              "value": "[]",
+              "type": "array"
+            },
+            {
+              "id": "7bcb6f49-6082-4667-b0de-3e6503121657",
+              "name": "fail_reason",
+              "value": "firecrawl_batch_failed_lane_1",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -96,
+        -384
+      ],
+      "id": "0ab91cb5-5547-404a-bf4e-7a4362dd2967",
+      "name": "Lane 1 Failed"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4438732a-ff4e-49b8-99be-be6cdea4a731",
+              "name": "lane_used",
+              "value": "lane_2_targeted_urls",
+              "type": "string"
+            },
+            {
+              "id": "de248bac-d260-4c21-8efd-c4d37f7b68a2",
+              "name": "extraction_status",
+              "value": "fallback_required",
+              "type": "string"
+            },
+            {
+              "id": "2ed47250-dcd7-4b8e-9cb5-076f5b6b8396",
+              "name": "doctor_count",
+              "value": 0,
+              "type": "number"
+            },
+            {
+              "id": "28458c57-1526-4ce8-85e2-735dea0f4d88",
+              "name": "doctors",
+              "value": "[]",
+              "type": "array"
+            },
+            {
+              "id": "7bcb6f49-6082-4667-b0de-3e6503121657",
+              "name": "fail_reason",
+              "value": "firecrawl_batch_failed_lane_2",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1360,
+        -336
+      ],
+      "id": "2e23fd0e-44a6-4948-a781-bf84e5f1e971",
+      "name": "Lane 2 Failed"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "4172eb4f-1541-4ec3-9120-e21e33bca7c9",
+              "leftValue": "={{ Array.isArray($json.candidate_urls_lane3) ? $json.candidate_urls_lane3.length : 0 }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "array",
+                "operation": "lengthGt",
+                "rightType": "number"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2160,
+        -336
+      ],
+      "id": "1f7571c8-48cb-4b54-8d56-10c0b5803bd5",
+      "name": "Lane 3 Has Candidate URLs?"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4438732a-ff4e-49b8-99be-be6cdea4a731",
+              "name": "lane_used",
+              "value": "lane_3_map_rescue",
+              "type": "string"
+            },
+            {
+              "id": "de248bac-d260-4c21-8efd-c4d37f7b68a2",
+              "name": "extraction_status",
+              "value": "manual_review_required",
+              "type": "string"
+            },
+            {
+              "id": "2ed47250-dcd7-4b8e-9cb5-076f5b6b8396",
+              "name": "doctor_count",
+              "value": 0,
+              "type": "number"
+            },
+            {
+              "id": "28458c57-1526-4ce8-85e2-735dea0f4d88",
+              "name": "doctors",
+              "value": "[]",
+              "type": "array"
+            },
+            {
+              "id": "7bcb6f49-6082-4667-b0de-3e6503121657",
+              "name": "fail_reason",
+              "value": "no_candidate_urls_from_firecrawl_map",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3088,
+        -320
+      ],
+      "id": "bb707e61-31ed-4db0-ab7c-ab907e5afdc3",
+      "name": "Lane 3 No Candidate URLs"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a47d7df2-002e-4c83-bfea-057c4f42fe92",
+              "name": "poll_attempts",
+              "value": "={{ Number($json.poll_attempts || 0) + 1 }}",
+              "type": "number"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1712,
+        -128
+      ],
+      "id": "8aa8e404-455e-4a50-b589-b22039c656fb",
+      "name": "Lane 1 Increment Poll Count"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "96b52e97-1e07-4bc3-9e44-9b16566505c5",
+              "leftValue": "={{ Number($json.poll_attempts || 0) }}",
+              "rightValue": 8,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -1248,
+        192
+      ],
+      "id": "c81603b4-e11c-4303-8d1b-db2738276a1b",
+      "name": "Lane 1 Poll Limit Reached?"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6519b21a-d1d6-483b-9084-ab7e180f2401",
+              "name": "lane_used",
+              "value": "lane_1_root",
+              "type": "string"
+            },
+            {
+              "id": "576034c5-daf0-4c99-9f79-925dbeec7081",
+              "name": "extraction_status",
+              "value": "fallback_required",
+              "type": "string"
+            },
+            {
+              "id": "c1d17b40-4f23-48b3-b7a6-2973f8f235b2",
+              "name": "doctor_count",
+              "value": 0,
+              "type": "number"
+            },
+            {
+              "id": "cb729e52-8efc-40f1-bbd9-e26182a56f3f",
+              "name": "doctors",
+              "value": "[]",
+              "type": "array"
+            },
+            {
+              "id": "22511a4a-a853-42c5-a973-c42c591fc3a3",
+              "name": "fail_reason",
+              "value": "firecrawl_batch_timeout_lane_1",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1008,
+        176
+      ],
+      "id": "b31b8dd5-8282-449b-97c3-5daf0e14a0cf",
+      "name": "Lane 1 Poll Timeout"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "1fd460f5-4598-43ca-9f48-2a1790873b25",
+              "leftValue": "={{ Number($json.poll_attempts || 0) }}",
+              "rightValue": 8,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1360,
+        496
+      ],
+      "id": "30b5ccb8-64c5-4bda-a07d-602102dd3425",
+      "name": "Lane 2 Poll Limit Reached?"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "122fb52f-cd61-4e3a-b88e-7f52727568d5",
+              "name": "poll_attempts",
+              "value": "={{ Number($json.poll_attempts || 0) + 1 }}",
+              "type": "number"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        896,
+        176
+      ],
+      "id": "3539914d-d142-4016-ba75-6a218c90b8a3",
+      "name": "Lane 2 Increment Poll Count"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ccc5def7-1813-4789-8fb7-59980c1c7496",
+              "name": "lane_used",
+              "value": "lane_2_targeted_urls",
+              "type": "string"
+            },
+            {
+              "id": "a2370228-ba50-4951-86cd-fef0d10eff72",
+              "name": "extraction_status",
+              "value": "fallback_required",
+              "type": "string"
+            },
+            {
+              "id": "6db6b215-be17-4054-aafd-8692bb0249d2",
+              "name": "doctor_count",
+              "value": 0,
+              "type": "number"
+            },
+            {
+              "id": "1e84276a-1cff-4e8d-b526-10e4a4a7557b",
+              "name": "doctors",
+              "value": "[]",
+              "type": "array"
+            },
+            {
+              "id": "1411ef84-338c-429f-8399-f189afa78714",
+              "name": "fail_reason",
+              "value": "firecrawl_batch_timeout_lane_2",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2208,
+        480
+      ],
+      "id": "1a6dd739-86ae-4a6e-b39f-c7a724ff41f7",
+      "name": "Lane 2 Poll Timeout"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "d741bd3c-4311-4ec9-ad60-bf50d43c5877",
+              "leftValue": "={{ Number($json.poll_attempts || 0) }}",
+              "rightValue": 8,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        5136,
+        -48
+      ],
+      "id": "2ee46343-1c67-4ee9-a1d9-38171b77d65f",
+      "name": "Lane 3 Poll Limit Reached?"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4438732a-ff4e-49b8-99be-be6cdea4a731",
+              "name": "lane_used",
+              "value": "lane_3_map_rescue",
+              "type": "string"
+            },
+            {
+              "id": "de248bac-d260-4c21-8efd-c4d37f7b68a2",
+              "name": "extraction_status",
+              "value": "manual_review_required",
+              "type": "string"
+            },
+            {
+              "id": "2ed47250-dcd7-4b8e-9cb5-076f5b6b8396",
+              "name": "doctor_count",
+              "value": 0,
+              "type": "number"
+            },
+            {
+              "id": "28458c57-1526-4ce8-85e2-735dea0f4d88",
+              "name": "doctors",
+              "value": "[]",
+              "type": "array"
+            },
+            {
+              "id": "7bcb6f49-6082-4667-b0de-3e6503121657",
+              "name": "fail_reason",
+              "value": "firecrawl_batch_timeout_lane_3",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        5504,
+        -64
+      ],
+      "id": "3262f3b0-2d93-4056-b504-0b7de3720e08",
+      "name": "Lane 3 Poll Timeout"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "beff9a6c-9ab7-4c7e-a5c5-9c7405e097e5",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "failed",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        5136,
+        -640
+      ],
+      "id": "d71a8858-1682-4d88-978c-11660debab77",
+      "name": "Lane 3 Batch Failed?"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2570ba69-7840-42cd-b41f-931d60619e07",
+              "name": "lane_used",
+              "value": "lane_3_map_rescue",
+              "type": "string"
+            },
+            {
+              "id": "86c4b743-c922-448f-87ca-31b2517201d5",
+              "name": "extraction_status",
+              "value": "manual_review_required",
+              "type": "string"
+            },
+            {
+              "id": "ff9e221b-4da4-4bbf-88c8-662911bec2ac",
+              "name": "doctor_count",
+              "value": 0,
+              "type": "number"
+            },
+            {
+              "id": "5b5afe7b-3d8c-4f03-b398-2691a76321f8",
+              "name": "doctors",
+              "value": "[]",
+              "type": "array"
+            },
+            {
+              "id": "ed3787de-6665-4597-be6e-9f535ff64e1f",
+              "name": "fail_reason",
+              "value": "firecrawl_batch_failed_lane_3",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        4032,
+        -112
+      ],
+      "id": "9a0eea3d-cab6-4378-a7c0-a8e40f882489",
+      "name": "Lane 3 Failed"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "122fb52f-cd61-4e3a-b88e-7f52727568d5",
+              "name": "poll_attempts",
+              "value": "={{ Number($json.poll_attempts || 0) + 1 }}",
+              "type": "number"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        4768,
+        -352
+      ],
+      "id": "22910fc5-7e2f-4ab4-b483-503e2219749b",
+      "name": "Lane 3 Increment Poll Count"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "83c6ec1b-f79c-44c8-a040-025e35c1dc83",
+              "leftValue": "={{$json.status}}",
+              "rightValue": "failed",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1360,
+        -48
+      ],
+      "id": "8c015eae-df4b-4126-b6c1-bd89358cb610",
+      "name": "If Lane 2 Batch Failed?"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "840018af-1c1d-423b-addc-bfe8040eace7",
+              "leftValue": "={{$json.status}}",
+              "rightValue": "failed",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -1248,
+        -368
+      ],
+      "id": "dd73f079-9212-4200-bd89-777aa113c2d9",
+      "name": "Lane 1 Batch Failed?"
+    },
+    {
+      "parameters": {
+        "numberInputs": 6
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        3648,
+        -1200
+      ],
+      "id": "28e5eca9-4c10-4f46-8ff7-de0ffd1e284d",
+      "name": "Merge Terminal Results"
+    },
+    {
+      "parameters": {
+        "jsCode": "function pickTopDoctors(doctors) {\n  const arr = Array.isArray(doctors) ? doctors.slice() : [];\n\n  arr.sort((a, b) => {\n    const ac = typeof a?.confidence === 'number' ? a.confidence : -1;\n    const bc = typeof b?.confidence === 'number' ? b.confidence : -1;\n    return bc - ac;\n  });\n\n  return arr.slice(0, 3);\n}\n\nreturn $input.all().map(item => {\n  const j = item.json;\n\n  const doctors = Array.isArray(j.doctors) ? j.doctors : [];\n  const topDoctors = pickTopDoctors(doctors);\n\n  const normDomain = j.norm_domain || null;\n  const website = j.website || null;\n  const baseWebsite = j.base_website || null;\n  const practiceNameInput = j.practice_name || j[\"Practice Name\"] || j.practice_name_input || null;\n\n  const practiceNameExtracted =\n    topDoctors.find(d => d?.practice_name_extracted)?.practice_name_extracted ||\n    j.practice_name_extracted ||\n    null;\n\n  const failReason = j.fail_reason || null;\n  const extractionStatus = j.extraction_status || null;\n  const laneUsed = j.lane_used || null;\n\n  const isBadDomain =\n    String(failReason || '').toLowerCase().includes('bad_domain') ||\n    String(failReason || '').toLowerCase().includes('bad domain') ||\n    String(extractionStatus || '').toLowerCase() === 'bad_domain';\n\n  const existingOwnerName = j[\"Owner Name\"] || j.owner_name || null;\n\n  const ownerName = existingOwnerName\n    ? existingOwnerName\n    : (isBadDomain && normDomain ? `BAD DOMAIN: ${normDomain}` : null);\n\n  const row = {\n    practice_unique_key: j.practice_unique_key || j[\"Practice Unique Key\"] || normDomain || website || null,\n    NormDomain: normDomain,\n    Website: website,\n    \"Base Website\": baseWebsite,\n    \"Practice Name Input\": practiceNameInput,\n    \"Practice Name Extracted\": practiceNameExtracted,\n    Phone: j.phone || j.Phone || null,\n    Address: j.address || j.Address || null,\n    \"Owner Name\": ownerName,\n    \"Providers Count\": Number(j.doctor_count || doctors.length || 0),\n    \"Extraction Status\": extractionStatus,\n    \"Lane Used\": laneUsed,\n    \"Fail Reason\": failReason\n  };\n\n  for (let i = 0; i < 3; i++) {\n    const d = topDoctors[i] || {};\n    const n = i + 1;\n\n    row[`Doctor ${n} Full Name`] = d.full_name || null;\n    row[`Doctor ${n} First Name`] = d.first_name || null;\n    row[`Doctor ${n} Last Name`] = d.last_name || null;\n    row[`Doctor ${n} Role Title`] = d.role_title || null;\n    row[`Doctor ${n} Specialty`] = d.specialty || null;\n    row[`Doctor ${n} Bio Page URL`] = d.bio_page_url || null;\n    row[`Doctor ${n} Source Page URL`] = d.source_page_url || null;\n    row[`Doctor ${n} Confidence`] = d.confidence ?? null;\n  }\n\n  return { json: row };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4000,
+        -1136
+      ],
+      "id": "0266ef8d-f09e-484d-8af1-7de6652762de",
+      "name": "Prepare Sheet Rown"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1bM6b1N1u0-IbAvYGBL66DYNSNli2NA8TtaWY7j2BRV8",
+          "mode": "list",
+          "cachedResultName": "Dental Master - 2.0",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bM6b1N1u0-IbAvYGBL66DYNSNli2NA8TtaWY7j2BRV8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 665312531,
+          "mode": "list",
+          "cachedResultName": "ALL MASTER",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1bM6b1N1u0-IbAvYGBL66DYNSNli2NA8TtaWY7j2BRV8/edit#gid=665312531"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Practice Unique Key": "={{ $json.practice_unique_key }}",
+            "Error Notes": "={{ $json['Fail Reason'] }}",
+            "Doctor Name 3": "={{ $json['Doctor 3 Full Name'] }}",
+            "Doctor Name 2": "={{ $json['Doctor 2 Full Name'] }}",
+            "Doctor Name 1": "={{ $json['Doctor 1 Full Name'] }}",
+            "Doctor Count": "={{ $json['Providers Count'] }}"
+          },
+          "matchingColumns": [
+            "Practice Unique Key"
+          ],
+          "schema": [
+            {
+              "id": "Practice Unique Key",
+              "displayName": "Practice Unique Key",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Practice Name",
+              "displayName": "Practice Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Street Address",
+              "displayName": "Street Address",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "City ",
+              "displayName": "City ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "State",
+              "displayName": "State",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Zip",
+              "displayName": "Zip",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Website ",
+              "displayName": "Website ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Website Normalized",
+              "displayName": "Website Normalized",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Practice Type",
+              "displayName": "Practice Type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Specialty ",
+              "displayName": "Specialty ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Source",
+              "displayName": "Source",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Source Detail",
+              "displayName": "Source Detail",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Doctors Raw",
+              "displayName": "Doctors Raw",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Doctor Count",
+              "displayName": "Doctor Count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Primary Doctor",
+              "displayName": "Primary Doctor",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Extraction Source Page",
+              "displayName": "Extraction Source Page",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Doctor Name 1",
+              "displayName": "Doctor Name 1",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Doctor 1 Cell",
+              "displayName": "Doctor 1 Cell",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Doctor 1 Email",
+              "displayName": "Doctor 1 Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Doctor 1 LinkedIN",
+              "displayName": "Doctor 1 LinkedIN",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Doctor Name 2",
+              "displayName": "Doctor Name 2",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Doctor 2Cell",
+              "displayName": "Doctor 2Cell",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Doctor 2 Email",
+              "displayName": "Doctor 2 Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Doctor 2 LinkedIN",
+              "displayName": "Doctor 2 LinkedIN",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Doctor Name 3",
+              "displayName": "Doctor Name 3",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Doctor 3 Cell",
+              "displayName": "Doctor 3 Cell",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Doctor 3 Email",
+              "displayName": "Doctor 3 Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Doctor 3 LinkedIN",
+              "displayName": "Doctor 3 LinkedIN",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Last Updated",
+              "displayName": "Last Updated",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Error Notes",
+              "displayName": "Error Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Notes",
+              "displayName": "Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        4432,
+        -1136
+      ],
+      "id": "7acd1677-b8b9-421d-8e98-5cf03c1f965f",
+      "name": "Upsert Doctor Enrichment Row"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "1b9774f6-843c-4163-89be-18855fc0303f",
+              "leftValue": "={{ Number($json.doctor_count || 0) }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -96,
+        -112
+      ],
+      "id": "1b77679e-8ffa-4057-a080-decd1bf799bf",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const base = $json.base_website || $json.website || '';\n\nif (!base || !/^https?:\\/\\//i.test(String(base))) {\n  return {\n    json: {\n      ...$json,\n      lane1_candidate_urls: [],\n      lane1_candidate_url_objects: [],\n      fail_reason: 'invalid_or_missing_base_website'\n    }\n  };\n}\n\nconst cleanBase = String(base).replace(/\\/+$/, '');\n\nconst patterns = [\n  ['/meet-the-dentist', 100],\n  ['/meet-the-dentists', 99],\n  ['/dentists', 98],\n  ['/dentist', 96],\n  ['/our-doctors', 95],\n  ['/doctors', 94],\n  ['/doctor', 92],\n  ['/providers', 90],\n  ['/our-providers', 88],\n  ['/our-team', 86],\n  ['/team', 84],\n  ['/staff', 70],\n  ['/about', 55],\n  ['/about-us', 54]\n];\n\nconst candidates = patterns.map(([path, score]) => ({\n  url: `${cleanBase}${path}`,\n  score,\n  source: 'pattern'\n}));\n\nreturn {\n  json: {\n    ...$json,\n    lane1_candidate_url_objects: candidates,\n    lane1_candidate_urls: candidates.map(x => x.url)\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2736,
+        -128
+      ],
+      "id": "0906f2b3-2c8d-4abe-bb97-6491a696857b",
+      "name": "Build Ranked Doctor URLs"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const candidates = Array.isArray($json.lane1_candidate_url_objects)\n  ? $json.lane1_candidate_url_objects\n  : [];\n\nconst top = candidates\n  .sort((a, b) => b.score - a.score)\n  .slice(0, 3); // Adjust to 2\u20133 depending on Firecrawl credit usage\n\nreturn {\n  json: {\n    ...$json,\n    lane1_candidate_url_objects: top,\n    lane1_candidate_urls: top.map(x => x.url)\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2528,
+        -128
+      ],
+      "id": "d4311f3f-3683-49a0-b7e3-fe19b28bd22a",
+      "name": "Keep Top Candidate URLs"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -3344,
+        -432
+      ],
+      "id": "6c50f7cf-e41b-45a7-894b-5e89006aeb76",
+      "name": "Schedule Trigger"
+    }
+  ],
+  "tags": [],
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "parentFolderId": null
+}

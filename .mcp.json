@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "workflow-manager": {
+      "url": "https://b143a.app.n8n.cloud/mcp-test/workflow-manager/sse"
+    }
+  }
+}
